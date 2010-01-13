@@ -14,5 +14,8 @@
  */
 
 
-class Xzend_Session_SaveHandler_Exception extends Exception
+require_once 'Xzend/Exception.php';
+
+
+class Xzend_Session_SaveHandler_Exception extends Xzend_Exception
 {}

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Xzend - Zend Framework Extensions
+ * Xzend - Sirprize's Zend Framework Extensions
  *
  * LICENSE
  *

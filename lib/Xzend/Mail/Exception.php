@@ -14,16 +14,8 @@
  */
 
 
-final class Xzend_Version
-{
-    
-    const VERSION = '0.1.0';
+require_once 'Xzend/Exception.php';
 
 
-    public static function compareVersion($version)
-    {
-        $version = strtolower($version);
-        $version = preg_replace('/(\d)pr(\d?)/', '$1a$2', $version);
-        return version_compare($version, strtolower(self::VERSION));
-    }
-}
+class Xzend_Mail_Exception extends Xzend_Exception
+{}

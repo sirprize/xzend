@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Xzend - Zend Framework Extensions
+ * Xzend - Sirprize's Zend Framework Extensions
  *
  * LICENSE
  *
@@ -14,4 +14,8 @@
  */
 
 
-class Xzend_Controller_Exception extends Exception {}
+require_once 'Xzend/Exception.php';
+
+
+class Xzend_Controller_Exception extends Xzend_Exception
+{}

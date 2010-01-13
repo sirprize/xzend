@@ -14,16 +14,15 @@
  */
 
 
-final class Xzend_Version
+require_once 'Zend/View/Helper/Abstract.php';
+
+
+class Xzend_View_Helper_SentenceUcFirst extends Zend_View_Helper_Abstract
 {
     
-    const VERSION = '0.1.0';
-
-
-    public static function compareVersion($version)
+    public function sentenceUcFirst($val)
     {
-        $version = strtolower($version);
-        $version = preg_replace('/(\d)pr(\d?)/', '$1a$2', $version);
-        return version_compare($version, strtolower(self::VERSION));
+    	require_once 'Sirprize/String.php';
+        return \Sirprize\String::sentenceUcFirst($val);
     }
 }

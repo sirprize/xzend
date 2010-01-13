@@ -14,16 +14,21 @@
  */
 
 
-final class Xzend_Version
+require_once 'Zend/View/Helper/Abstract.php';
+
+
+class Xzend_View_Helper_Truncate extends Zend_View_Helper_Abstract
 {
-    
-    const VERSION = '0.1.0';
 
-
-    public static function compareVersion($version)
-    {
-        $version = strtolower($version);
-        $version = preg_replace('/(\d)pr(\d?)/', '$1a$2', $version);
-        return version_compare($version, strtolower(self::VERSION));
-    }
+    public function truncate(
+    	$string,
+    	$length = 80,
+    	$etc = '...',
+    	$breakWords = false,
+    	$middle = false
+    )
+	{
+		require_once 'Sirprize/String.php';
+		return \Sirprize\String::truncate($string, $length, $etc, $breakWords, $middle);
+	}
 }
