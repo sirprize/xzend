@@ -14,16 +14,28 @@
  */
 
 
-final class Xzend_Version
+class Xzend_Module
 {
-    
-    const VERSION = '0.1.1';
-
-
-    public static function compareVersion($version)
+	
+	protected $_config = null;
+	
+	
+	
+	public function __construct(array $config)
     {
-        $version = strtolower($version);
-        $version = preg_replace('/(\d)pr(\d?)/', '$1a$2', $version);
-        return version_compare($version, strtolower(self::VERSION));
+		$this->_config = $config;
     }
+	
+	
+	protected function _getConfig($name)
+	{
+		if(!isset($this->_config[$name]))
+		{
+			require_once 'Xzend/Module/Exception.php';
+            throw new Xzend_Module_Exception("missing '$name' config");
+		}
+		
+        return $this->_config[$name];
+	}
+	
 }
