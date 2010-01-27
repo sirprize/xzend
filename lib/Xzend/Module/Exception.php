@@ -17,5 +17,5 @@
 require_once 'Xzend/Exception.php';
 
 
-class Xzend_Model_Exception extends Xzend_Exception
+class Xzend_Module_Exception extends Xzend_Exception
 {}
