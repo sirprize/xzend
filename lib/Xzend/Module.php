@@ -31,8 +31,8 @@ class Xzend_Module
 	{
 		if(!isset($this->_config[$name]))
 		{
-			require_once 'Xzend/Module/Exception.php';
-            throw new Xzend_Module_Exception("missing '$name' config");
+			require_once 'Xzend/Exception.php';
+            throw new Xzend_Exception("missing '$name' config");
 		}
 		
         return $this->_config[$name];
