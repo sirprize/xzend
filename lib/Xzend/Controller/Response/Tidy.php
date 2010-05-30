@@ -27,7 +27,7 @@ class Xzend_Controller_Response_Tidy extends Zend_Controller_Response_Abstract
 	
 	
 	
-	public function enable()
+	public function enableTidy()
 	{
 		$this->_enableTidy = true;
 		return $this;
@@ -35,7 +35,7 @@ class Xzend_Controller_Response_Tidy extends Zend_Controller_Response_Abstract
 	
 	
 	
-	public function disable()
+	public function disableTidy()
 	{
 		$this->_enableTidy = false;
 		return $this;
