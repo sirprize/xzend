@@ -20,9 +20,27 @@ require_once 'Zend/View/Helper/Abstract.php';
 class Xzend_View_Helper_SentenceUcFirst extends Zend_View_Helper_Abstract
 {
     
-    public function sentenceUcFirst($val)
+    public function sentenceUcFirst($s)
     {
-    	require_once 'Sirprize/String.php';
-        return \Sirprize\String::sentenceUcFirst($val);
+    	$sentencesNew = array();
+    	$sentences = explode('. ', $s);
+    	
+    	foreach($sentences as $sentence)
+    	{
+    		$sentence = trim($sentence);
+    		$sentence = mb_convert_case($sentence, MB_CASE_LOWER);
+    		# find first word and make it title cased
+    		$sentence = preg_replace_callback(
+				'/^([^\s]*)/i',
+				create_function(
+					'$matches',
+					'return mb_convert_case($matches[0], MB_CASE_TITLE);'
+				),
+				$sentence
+			);
+			$sentencesNew[] = $sentence;
+    	}
+    	
+    	return trim(implode('. ', $sentencesNew));
     }
 }

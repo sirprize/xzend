@@ -28,7 +28,21 @@ class Xzend_View_Helper_Truncate extends Zend_View_Helper_Abstract
     	$middle = false
     )
 	{
-		require_once 'Sirprize/String.php';
-		return \Sirprize\String::truncate($string, $length, $etc, $breakWords, $middle);
+		if ($length == 0)
+			return '';
+	
+		if (mb_strlen($string) > $length) {
+			$length -= min($length, mb_strlen($etc));
+			if (!$breakWords && !$middle) {
+				$string = preg_replace('/\s+?(\S+)?$/', '', mb_substr($string, 0, $length+1));
+			}
+			if(!$middle) {
+				return mb_substr($string, 0, $length) . $etc;
+			} else {
+				return mb_substr($string, 0, $length/2) . $etc . mb_substr($string, -$length/2);
+			}
+		} else {
+			return $string;
+		}
 	}
 }
