@@ -23,7 +23,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 	protected $_actionKey = 'action';
 	protected $_moduleKey = 'module';
 	protected $_restMethodKey = '_method';
-	protected $_representationKey = 'representation';
+	#protected $_representationKey = 'representation';
 	
 	
 	
@@ -38,7 +38,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 			->setActionKey((isset($keys['action'])) ? $keys['action'] : $route->getActionKey())
 			->setModuleKey((isset($keys['module'])) ? $keys['module'] : $route->getModuleKey())
 			->setRestMethodKey((isset($keys['method'])) ? $keys['method'] : $route->getRestMethodKey())
-			->setRepresentationKey((isset($keys['representation'])) ? $keys['representation'] : $route->getRepresentationKey())
+			#->setRepresentationKey((isset($keys['representation'])) ? $keys['representation'] : $route->getRepresentationKey())
 		;
 		return $route;
     }
@@ -59,12 +59,13 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 			throw new Xzend_Controller_Exception('call setRestMethod() before '.__METHOD__);
 		}
 		
-    	$representation = null;
+    	#$representation = null;
     	
-    	if(preg_match('/(.*)\.(\w*)$/', $path, $matches))
+    	#if(preg_match('/(.*)\.(\w*)$/', $path, $matches))
+		if(preg_match('/(.*)$/', $path, $matches))
     	{
     		$path = $matches[1];
-    		$representation = $matches[2];
+    		#$representation = $matches[2];
     	}
     	
     	$return = parent::match($path);
@@ -73,7 +74,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
     	{
     		return false;
     	}
-    	
+    	/*
     	if($this->_representationKey !== null)
     	{
     		if($representation !== null)
@@ -85,7 +86,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
     			$return[$this->_representationKey] = $this->_defaults[$this->_representationKey];
     		}
     	}
-		
+		*/
 		$defaults = $this->getDefaults();
 		
 		if(!isset($defaults[$this->_getRestMethod()]))
@@ -100,6 +101,11 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 		unset($return['post']);
 		unset($return['head']);
 		unset($return['delete']);
+		/*
+		print '<pre>';
+		print_r($return);
+		exit;
+		*/
 		return $return;
     }
     
@@ -108,7 +114,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
     public function assemble($data = array(), $reset = false, $encode = false)
     {
 		$return = parent::assemble($data, $reset, $encode);
-		
+		/*
 		if($this->_representationKey !== null)
     	{
     		if($return && isset($data[$this->_representationKey]))
@@ -116,6 +122,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 				$return .= '.'.$data[$this->_representationKey];
 			}
     	}
+		*/
 		return $return;
     }
     
@@ -158,7 +165,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 		return $this->_moduleKey;
 	}
 	
-	
+	/*
 	public function setRepresentationKey($representationKey)
 	{
 		$this->_representationKey = $representationKey;
@@ -170,7 +177,7 @@ class Xzend_Controller_Router_Route_Rest extends Zend_Controller_Router_Route
 	{
 		return $this->_representationKey;
 	}
-	
+	*/
 	
 	protected function _getRestMethod()
     {
