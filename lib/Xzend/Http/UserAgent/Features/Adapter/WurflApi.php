@@ -81,6 +81,9 @@ class Xzend_Http_UserAgent_Features_Adapter_WurflApi
 					if($c['persistence']['provider'] == 'file') {
 						$wurflConfig->persistence("file", array(WURFL_Configuration_Config::DIR => $c['persistence']['dir']));
 					}
+					if($c['cache']['provider'] == 'file') {
+						$wurflConfig->cache("file", array(WURFL_Configuration_Config::DIR => $c['cache']['dir'], WURFL_Configuration_Config::EXPIRATION => $c['cache']['expiration']));
+					}
                 }
                 $wurflManagerFactory = new WURFL_WURFLManagerFactory($wurflConfig);
                 $wurflManager = $wurflManagerFactory->create();
